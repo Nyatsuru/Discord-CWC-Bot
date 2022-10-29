@@ -1,7 +1,6 @@
 const Drop = require('../../../schemas/drop');
-const CommandOption = require('../../../api/command-option');
-const { EmbedBuilder, AttachmentBuilder } = require('discord.js');
-const Mob = require("../../../schemas/mob");
+const { EmbedBuilder } = require('discord.js');
+const Playerdrop = require('../../../schemas/playerdrop');
 
 module.exports = {
   name: "roll", // Name of command
@@ -44,13 +43,28 @@ module.exports = {
     const drops = await Drop.find({ rarity: targetRarity }).exec();
     const drop = this.rollForDrop(drops);
 
-    interaction.reply({
-      embeds: [
-        new EmbedBuilder()
-          .setTitle(`You got ${drop.name}`).setAuthor({ name: drop.rarity })
-          .setDescription(drop.description)
-          .setImage(drop.image)
-      ],
-    })
+    const playerdrop = new Playerdrop();
+    playerdrop.player = interaction.user.id;
+    playerdrop.drop = drop;
+
+    playerdrop.save().then(_ => {
+      interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+              .setTitle(`You got ${drop.name}`)
+              .setAuthor({ name: drop.rarity })
+              .setImage(drop.image)
+        ],
+      });
+    }).catch((error) => {
+      interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+              .setTitle(`Error Rolling`)
+              .setAuthor({ name: 'Error' })
+              .setDescription(error.message)
+        ],
+      });
+    });
   },
 };
