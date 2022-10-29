@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('discord.js');
-const Mob = require('../../../schemas/mob');
+const Mob = require('../../../schemas/baseMob');
 
 module.exports = {
   name: "addmob", // Name of command
