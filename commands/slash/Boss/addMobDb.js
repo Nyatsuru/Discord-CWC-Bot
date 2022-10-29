@@ -7,7 +7,7 @@ module.exports = {
   type: 1, // Command type
   options: [
     {
-      name: "class",
+      name: "type",
       description: "write anything you want!",
       type: 3,
       required: true
