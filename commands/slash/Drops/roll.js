@@ -20,35 +20,35 @@ module.exports = {
     uncommon: 3500,
     common: 5000,
   },
-  rollForRarity: function () {
+  rollForRarity: function() {
     let totalChance = 0;
     for (const key in this.rarityChances) {
       totalChance += this.rarityChances[key];
     }
 
-    const result = Math.random() * totalChance;
+    const result = Math.round(Math.random() * totalChance);
     for (const key in this.rarityChances) {
-      if (this.rarityChances[key] < result) {
+      if (this.rarityChances[key] > result) {
         return key;
       }
     }
 
     return 'common';
   },
-  rollForDrop: function (drops) {
-    const result = Math.random() * drops.length;
+  rollForDrop: function(drops) {
+    const result = Math.round(Math.random() * (drops.length - 1));
     return drops[result];
   },
-  run: async (client, interaction, config, db) => {
+  run: async function(client, interaction, config, db) {
     const targetRarity = this.rollForRarity();
-    const drops = await Drop.find({rarity: targetRarity}).exec();
+    const drops = await Drop.find({ rarity: targetRarity }).exec();
     const drop = this.rollForDrop(drops);
 
     interaction.reply({
       embeds: [
         new EmbedBuilder()
             .setTitle(`You got ${drop.name}`)
-            .setAuthor({ name: drop.name })
+            .setAuthor({ name: drop.rarity })
             .setDescription(drop.description)
             .setImage(drop.image)
       ],
