@@ -1,5 +1,6 @@
-const Mob = require('../../../schemas/drop');
+const Drop = require('../../../schemas/drop');
 const CommandOption = require('../../../api/command-option');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
   name: "adddrop", // Name of command
@@ -48,6 +49,33 @@ module.exports = {
     const image = interaction.options.get('image').value;
     const description = interaction.options.get('description').value;
 
-    console.log(image)
+    const drop = new Drop();
+    drop.rarity = rarity;
+    drop.chance = chance;
+    drop.name = name;
+    drop.image = image;
+    drop.description = description;
+
+    drop.save().then(() => {
+      interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+              .setTitle(`${drop.name} [${drop.chance}%]`)
+              .setAuthor({ name: drop.rarity })
+              .setDescription(drop.description)
+              .setImage(`attachment://${image}`)
+        ],
+      })
+    }).catch((error) => {
+      interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+              .setTitle(`Could not create drop`)
+              .setAuthor({ name: 'Error' })
+              .setDescription(`${error.message}`)
+        ],
+      })
+      console.log(error);
+    });
   },
 };
