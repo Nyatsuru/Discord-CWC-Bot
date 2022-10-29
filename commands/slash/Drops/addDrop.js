@@ -46,7 +46,7 @@ module.exports = {
     const rarity = interaction.options.get('rarity').value;
     const chance = interaction.options.get('chance').value;
     const name = interaction.options.get('name').value;
-    const image = interaction.options.get('image').url;
+    const image = interaction.options.get('image').attachment.url;
     const description = interaction.options.get('description').value;
 
     const drop = new Drop();
