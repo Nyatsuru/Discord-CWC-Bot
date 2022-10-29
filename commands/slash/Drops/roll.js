@@ -47,10 +47,9 @@ module.exports = {
     interaction.reply({
       embeds: [
         new EmbedBuilder()
-            .setTitle(`You got ${drop.name}`)
-            .setAuthor({ name: drop.rarity })
-            .setDescription(drop.description)
-            .setImage(drop.image)
+          .setTitle(`You got ${drop.name}`).setAuthor({ name: drop.rarity })
+          .setDescription(drop.description)
+          .setImage(drop.image)
       ],
     })
   },
