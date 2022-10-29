@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 module.exports = function() {
   const schema = new mongoose.Schema({
     rarity: { type: String },
-    chance: { type: String },
+    chance: { type: Number },
     name: { type: String },
     image: { type: String },
     description: { type: String },
