@@ -1,6 +1,6 @@
 const Drop = require('../../../schemas/drop');
 const CommandOption = require('../../../api/command-option');
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, AttachmentBuilder } = require('discord.js');
 
 module.exports = {
   name: "adddrop", // Name of command
@@ -46,7 +46,7 @@ module.exports = {
     const rarity = interaction.options.get('rarity').value;
     const chance = interaction.options.get('chance').value;
     const name = interaction.options.get('name').value;
-    const image = interaction.options.get('image').value;
+    const image = interaction.options.get('image').url;
     const description = interaction.options.get('description').value;
 
     const drop = new Drop();
@@ -63,7 +63,7 @@ module.exports = {
               .setTitle(`${drop.name} [${drop.chance}%]`)
               .setAuthor({ name: drop.rarity })
               .setDescription(drop.description)
-              .setImage(`attachment://${image}`)
+              .setImage(image)
         ],
       })
     }).catch((error) => {
