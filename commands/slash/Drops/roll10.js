@@ -6,7 +6,7 @@ const ColorService = require('../../../services/color-service');
 
 module.exports = {
   name: "roll10", // Name of command
-  description: "Roll for a drop",
+  description: "Roll for ten drops",
   type: 1, // Command type
   options: [], // Command options
   permissions: {
@@ -31,7 +31,7 @@ module.exports = {
   run: async function(client, interaction, config, db) {
     const drops = [];
     for (let index = 0; index < 10; index++) {
-      drops.append(RollService.rollForDrop());
+      drops.append(await RollService.rollForDrop());
     }
 
     for (const drop of drops) {

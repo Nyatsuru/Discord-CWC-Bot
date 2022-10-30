@@ -14,7 +14,7 @@ module.exports = {
     DEFAULT_MEMBER_PERMISSIONS: "" // User permissions needed
   },
   run: async function(client, interaction, config, db) {
-    const drop = RollService.rollForDrop();
+    const drop = await RollService.rollForDrop();
 
     const playerdrop = new Playerdrop();
     playerdrop.player = interaction.user.id;
