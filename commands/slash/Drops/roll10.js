@@ -29,6 +29,23 @@ module.exports = {
     return embeds;
   },
   run: async function(client, interaction, config, db) {
+    await interaction.reply({
+      embeds: [
+        new EmbedBuilder()
+            .setTitle(`Rolling`)
+            .setAuthor({ name: 'rolling' })
+      ],
+    });
+
+    await interaction.editReply({
+      embeds: [
+        new EmbedBuilder()
+            .setTitle(`Rolling`)
+            .setAuthor({ name: 'rolling' })
+            .setImage('https://cdn.discordapp.com/attachments/1033218973896028300/1036062877448163398/drop-animation-square.gif'),
+      ],
+    });
+
     const drops = [];
     for (let index = 0; index < 10; index++) {
       drops.push(await RollService.rollForDrop());
@@ -41,27 +58,10 @@ module.exports = {
       await playerdrop.save();
     }
 
-    await interaction.reply({
-      embeds: [
-        new EmbedBuilder()
-          .setTitle(`Rolling`)
-          .setAuthor({ name: 'rolling' })
-      ],
-    });
-
-    await interaction.editReply({
-      embeds: [
-        new EmbedBuilder()
-          .setTitle(`Rolling`)
-          .setAuthor({ name: 'rolling' })
-          .setImage('https://cdn.discordapp.com/attachments/1033218973896028300/1036062877448163398/drop-animation-square.gif'),
-      ],
-    });
-
     setTimeout(_ => {
       interaction.editReply({
         embeds: this.generateEmbeds(drops),
       });
-    }, 3700)
+    }, 2700)
   },
 };
