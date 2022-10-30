@@ -7,6 +7,7 @@ module.exports = function() {
     description: { type: String },
     agility: { type: Number },
     strength: { type: Number },
+    currency: { type: Number },
   });
 
   schema.index({ class: 1, name: 1 }, { unique: true })
