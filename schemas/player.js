@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 module.exports = function() {
   const schema = new mongoose.Schema({
-    class: { class: String },
+    class: { type: String },
     name: { type: String },
     description: { type: String },
     agility: { type: Number },

@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('discord.js');
-const Mob = require('../../../schemas/baseMob');
+const Player = require('../../../schemas/player');
 
 module.exports = {
   name: "addchar", // Name of command
@@ -52,7 +52,7 @@ module.exports = {
       interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle(`Could not create mob, it already exists (name: ${mobName}, type ${mobType})`)
+            .setTitle(`Could not create mob, it already exists (name: ${playerName}, type ${playerClass})`)
             .setAuthor({ name: 'Error' })
             .setDescription(`Please use another name/type`)
         ],
