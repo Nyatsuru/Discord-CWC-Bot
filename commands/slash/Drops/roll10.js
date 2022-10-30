@@ -17,7 +17,7 @@ module.exports = {
     const embeds = [];
 
     drops.forEach(drop => {
-      embeds.append(
+      embeds.push(
           new EmbedBuilder()
           .setTitle(`You got ${drop.name}`)
           .setColor(ColorService.getColorForRarity(drop.rarity))
@@ -31,7 +31,7 @@ module.exports = {
   run: async function(client, interaction, config, db) {
     const drops = [];
     for (let index = 0; index < 10; index++) {
-      drops.append(await RollService.rollForDrop());
+      drops.push(await RollService.rollForDrop());
     }
 
     for (const drop of drops) {
