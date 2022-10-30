@@ -47,7 +47,7 @@ client.events = new Collection();
 
 module.exports = client;
 
-["application_commands", "modals", "events", "mongoose"].forEach((file) => {
+["application_commands", "modals", "events", "mongoose", "migrations"].forEach((file) => {
   require(`./handlers/${file}`)(client, config);
 });
 
