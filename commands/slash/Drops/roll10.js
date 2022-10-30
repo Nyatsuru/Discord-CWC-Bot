@@ -13,32 +13,17 @@ module.exports = {
     DEFAULT_PERMISSIONS: "", // Client permissions needed
     DEFAULT_MEMBER_PERMISSIONS: "" // User permissions needed
   },
-
-  equalizeDropNames: function (drops) {
-    let longestNameLength = 0;
-
-    drops.forEach(drop => {
-      if (drop.name.length > longestNameLength) {
-        longestNameLength = drop.name.length;
-      }
-    });
-
-    return drops.map(drop => {
-      drop.name = drop.name.padEnd(longestNameLength, ' ');
-      return drop;
-    });
-  },
-  generateEmbeds: function (drops) {
+  generateEmbeds: function(drops) {
     const embeds = [];
-    drops = this.equalizeDropNames(drops);
 
     drops.forEach(drop => {
       embeds.push(
-          new EmbedBuilder()
+        new EmbedBuilder()
           .setTitle(`You got ${drop.name}`)
           .setColor(ColorService.getColorForRarity(drop.rarity))
           .setAuthor({ name: drop.rarity })
           .setThumbnail(drop.image)
+          .setImage("https://cdn.discordapp.com/attachments/1033218973896028300/1036339090624364554/linie.png")
       );
     })
 
@@ -48,17 +33,17 @@ module.exports = {
     await interaction.reply({
       embeds: [
         new EmbedBuilder()
-            .setTitle(`Rolling`)
-            .setAuthor({ name: 'rolling' })
+          .setTitle(`Rolling`)
+          .setAuthor({ name: 'rolling' })
       ],
     });
 
     await interaction.editReply({
       embeds: [
         new EmbedBuilder()
-            .setTitle(`Rolling`)
-            .setAuthor({ name: 'rolling' })
-            .setImage('https://cdn.discordapp.com/attachments/1033218973896028300/1036062877448163398/drop-animation-square.gif'),
+          .setTitle(`Rolling`)
+          .setAuthor({ name: 'rolling' })
+          .setImage('https://cdn.discordapp.com/attachments/1033218973896028300/1036062877448163398/drop-animation-square.gif'),
       ],
     });
 
