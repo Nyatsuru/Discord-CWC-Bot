@@ -62,6 +62,6 @@ module.exports = {
       interaction.editReply({
         embeds: this.generateEmbeds(drops),
       });
-    }, 2700)
+    }, 800)
   },
 };
