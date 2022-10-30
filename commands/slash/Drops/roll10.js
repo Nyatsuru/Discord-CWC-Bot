@@ -13,8 +13,24 @@ module.exports = {
     DEFAULT_PERMISSIONS: "", // Client permissions needed
     DEFAULT_MEMBER_PERMISSIONS: "" // User permissions needed
   },
+
+  equalizeDropNames: function (drops) {
+    let longestNameLength = 0;
+
+    drops.forEach(drop => {
+      if (drop.name.length > longestNameLength) {
+        longestNameLength = drop.name.length;
+      }
+    });
+
+    return drops.map(drop => {
+      drop.name = drop.name.padEnd(longestNameLength, ' ');
+      return drop;
+    });
+  },
   generateEmbeds: function (drops) {
     const embeds = [];
+    drops = this.equalizeDropNames(drops);
 
     drops.forEach(drop => {
       embeds.push(
