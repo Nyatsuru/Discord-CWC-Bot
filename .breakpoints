@@ -1,3 +1,84 @@
 {
-  "files": {}
+  "files": {
+    "commands/slash/activeMobs/attackMob.js": [
+      {
+        "id": "d9376104-279a-477a-9d7a-753e2fb355d1",
+        "line": 20,
+        "version": 1089,
+        "index": 542
+      },
+      {
+        "id": "60e5d368-c524-4cc5-9674-cad9b56a5d5c",
+        "line": 21,
+        "version": 1089,
+        "index": 594
+      },
+      {
+        "id": "09e6a9a0-5c9b-40e3-a926-f92782bf8504",
+        "line": 22,
+        "version": 1089,
+        "index": 651
+      },
+      {
+        "id": "fb6555e8-4b7a-4073-9eec-b3e93e2c84cd",
+        "line": 23,
+        "version": 1089,
+        "index": 718
+      },
+      {
+        "id": "5fe3869f-badc-4a78-bf06-aa26ffa2dda0",
+        "line": 25,
+        "version": 1089,
+        "index": 766
+      },
+      {
+        "id": "700bb16a-6d69-44f5-b617-1ed59fc619b2",
+        "line": 26,
+        "version": 1089,
+        "index": 823
+      },
+      {
+        "id": "db80f370-1208-4b4f-bd7b-b3dbd288209c",
+        "line": 27,
+        "version": 1089,
+        "index": 862
+      },
+      {
+        "id": "b820dfd5-84ae-49b8-80bd-648b0a74de37",
+        "line": 30,
+        "version": 1089,
+        "index": 893
+      },
+      {
+        "id": "99d18a63-7245-492a-9f9a-bec016eedb79",
+        "line": 31,
+        "version": 1089,
+        "index": 933
+      },
+      {
+        "id": "d7fe410f-8edb-4cc7-9905-2990c8676639",
+        "line": 32,
+        "version": 1089,
+        "index": 965
+      },
+      {
+        "id": "2c1148c9-9fad-4967-97d1-eb72a3fa91d8",
+        "line": 40,
+        "version": 1089,
+        "index": 1441
+      },
+      {
+        "id": "6430dcf4-4fe9-4e67-8cb6-e6184320180c",
+        "line": 41,
+        "version": 1089,
+        "index": 1454
+      },
+      {
+        "id": "b7dd19d0-f266-426d-845d-f0e430b76c7d",
+        "line": 42,
+        "version": 1089,
+        "index": 1505
+      }
+    ]
+  }
 }

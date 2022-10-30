@@ -1,5 +1,5 @@
 const Drop = require('../../../schemas/drop');
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const Playerdrop = require('../../../schemas/playerdrop');
 
 module.exports = {
@@ -38,6 +38,18 @@ module.exports = {
     const result = Math.round(Math.random() * (drops.length - 1));
     return drops[result];
   },
+  getColorForRarity: function(rarity) {
+    const colors = {
+      unique: 0xf43030,
+      legendary: 0xFAC56D,
+      epic: 0xC8A7D9,
+      rare: 0x73B6E7,
+      uncommon: 0x74e26c,
+      common: 0x939393,
+    }
+
+    return colors[rarity];
+  },
   run: async function(client, interaction, config, db) {
     const targetRarity = this.rollForRarity();
     const drops = await Drop.find({ rarity: targetRarity }).exec();
@@ -46,23 +58,41 @@ module.exports = {
     const playerdrop = new Playerdrop();
     playerdrop.player = interaction.user.id;
     playerdrop.drop = drop;
-
-    playerdrop.save().then(_ => {
-      interaction.reply({
+    playerdrop.save().then(async _ => {
+      await interaction.reply({
         embeds: [
           new EmbedBuilder()
-              .setTitle(`You got ${drop.name}`)
-              .setAuthor({ name: drop.rarity })
-              .setImage(drop.image)
+            .setTitle(`Rolling`)
+            .setAuthor({ name: 'rolling' })
         ],
       });
+      await interaction.editReply({
+        embeds: [
+          new EmbedBuilder()
+            .setTitle(`Rolling`)
+            .setAuthor({ name: 'rolling' })
+            .setImage('https://cdn.discordapp.com/attachments/1033218973896028300/1036062877448163398/drop-animation-square.gif'),
+        ],
+      });
+
+      setTimeout(async _ => {
+        interaction.editReply({
+          embeds: [
+            new EmbedBuilder()
+              .setTitle(`You got ${drop.name}`)
+              .setColor(this.getColorForRarity(drop.rarity))
+              .setAuthor({ name: drop.rarity })
+              .setImage(drop.image),
+          ],
+        });
+      }, 3700)
     }).catch((error) => {
       interaction.reply({
         embeds: [
           new EmbedBuilder()
-              .setTitle(`Error Rolling`)
-              .setAuthor({ name: 'Error' })
-              .setDescription(error.message)
+            .setTitle(`Error Rolling`)
+            .setAuthor({ name: 'Error' })
+            .setDescription(error.message)
         ],
       });
     });
