@@ -38,6 +38,7 @@ module.exports = {
     newPlayer.class = playerClass;
     newPlayer.name = playerName;
     newPlayer.description = playerDesc;
+    newPlayer.currency = 0;
 
     newPlayer.save().then(() => {
       interaction.reply({
