@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 module.exports = function() {
   const schema = new mongoose.Schema({
+    key: { type: String },
     type: { type: String },
     name: { type: String },
     level: { type: Number },
@@ -10,5 +11,7 @@ module.exports = function() {
     description: { type: String },
   });
 
-  return mongoose.model('Mob', schema);
+  schema.index({ key: 1 }, { unique: true })
+
+  return mongoose.model('activeMob', schema);
 }();

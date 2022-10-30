@@ -10,5 +10,5 @@ module.exports = function() {
 
   schema.index({ type: 1, name: 1 }, { unique: true })
 
-  return mongoose.model('Mob', schema);
+  return mongoose.model('baseMob', schema);
 }();
