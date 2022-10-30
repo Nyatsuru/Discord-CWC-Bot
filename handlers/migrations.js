@@ -9,6 +9,11 @@ module.exports = (client, config) => {
     try {
       const migrations = fs.readdirSync(`./migrations`).filter((file) => file.endsWith('.js'));
 
+      if (migrations.length === 0) {
+        console.log('[HANDLER] No migrations to execute.'.brightGreen);
+        return;
+      }
+
       for (let file of migrations) {
         const migrationName = file.replace('.js', '');
         if (await Migration.findOne({ name: migrationName }).exec() === null) {
